@@ -16,8 +16,8 @@ import { UserLearningTermModule } from './user-learning-term/user-learning-term.
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
-      debug: process.env.NODE_ENV !== 'production',
-      playground: process.env.NODE_ENV !== 'production',
+      debug: true,
+      playground: true,
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
       definitions: {
