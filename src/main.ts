@@ -9,6 +9,6 @@ async function bootstrap() {
   app.use(cors({ origin: process.env.FRONTEND_SERVER_URL as string, credentials: true}));
   app.use(cookieParser());
 
-  await app.listen(4000);
+  await app.listen(process.env.PORT || 4000);
 }
 bootstrap();
