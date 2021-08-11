@@ -20,6 +20,7 @@ import { UserLearningTermModule } from './user-learning-term/user-learning-term.
       playground: true,
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
+      introspection: true,
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class',
