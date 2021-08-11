@@ -6,7 +6,7 @@ import { Ctx } from 'src/types/Context.type';
 import { signJwt } from 'src/utils/jwt.utils';
 
 const cookieOptions: CookieOptions = {
-    domain: 'localhost',
+    domain: process.env.BACKEND_DOMAIN || 'localhost',
     secure: false,
     sameSite: 'none',
     httpOnly: true,
