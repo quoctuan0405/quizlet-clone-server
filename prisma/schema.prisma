@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["selectRelationCount"]
+}
+
+model Set {
+  id                Int     @default(autoincrement()) @id
+  name              String  @db.VarChar(255)
+  author            User    @relation(fields: [authorId], references: [id])
+  authorId          Int
+  terms             Term[]
+}
+
+model Term {
+  id                Int     @default(autoincrement()) @id
+  question          String  @db.VarChar(2047)
+  answer            String  @db.VarChar(2047)
+  explanation       String? @db.VarChar(2047)
+  set               Set     @relation(fields: [setId], references: [id])
+  setId             Int
+  options           Option[]
+  usersLearning     UserLearningTerm[]
+}
+
+model Option {
+  id                Int     @default(autoincrement()) @id
+  option            String  @db.VarChar(2047)
+  term              Term    @relation(fields: [termId], references: [id])
+  termId            Int
+}
+
+model User {
+  id                Int     @default(autoincrement()) @id
+  username          String  @db.VarChar(255) @unique
+  password          String  @db.VarChar(255)
+  sets              Set[]
+  learningTerms     UserLearningTerm[]
+}
+
+model UserLearningTerm {
+  id                Int     @default(autoincrement()) @id
+  user              User    @relation(fields: [userId], references: [id])    
+  term              Term    @relation(fields: [termId], references: [id])
+  userId            Int
+  termId            Int
+  remained          Int
+  learned           Boolean
+}
