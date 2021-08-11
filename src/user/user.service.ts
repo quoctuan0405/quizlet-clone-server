@@ -3,7 +3,7 @@ import { PrismaClient, User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { CookieOptions } from 'express';
 import { Ctx } from 'src/types/Context.type';
-import { signJwt } from 'utils/jwt.utils';
+import { signJwt } from 'src/utils/jwt.utils';
 
 const cookieOptions: CookieOptions = {
     domain: 'localhost',

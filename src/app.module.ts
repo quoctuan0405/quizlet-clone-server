@@ -9,7 +9,7 @@ import { SetModule } from './set/set.module';
 import { TermModule } from './term/term.module';
 import { OptionModule } from './option/option.module';
 import { set } from 'lodash';
-import { decode } from 'utils/jwt.utils';
+import { decode } from 'src/utils/jwt.utils';
 import { UserLearningTermModule } from './user-learning-term/user-learning-term.module';
 
 @Module({
