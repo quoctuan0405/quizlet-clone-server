@@ -1,73 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+<h1 align="center"><a href="https://quizlet-clone-client.vercel.app/">Quizlet clone</a> (server side)</h1>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Why I made this project
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Many use [Quizlet](https://quizlet.com) not just to memorize terms but also to learn by heart an entire question bank. This project add one feature that [Quizlet](https://quizlet.com) not currently have: the creator can add multiple options for each of their terms for learner to choose in learning mode.
 
-## Description
+## How I worked on this project
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- I use GraphQL.
+- I use [Prisma](https://prisma.io) as an ORM due to its easy-to-use API and its ability to work seamlessly with Typescript.
+- For the client side, I use [Next.js](https://nextjs.org) with [Apollo](https://https://www.apollographql.com).
+- For the server side, I use [Nest.js](https://nestjs.com).
 
-## Installation
+## Why I build the project this way
+
+- I use GraphQL because it is easy to build-and-use API with the support of [Prisma](https://prisma.io).
+- I didn't use a state management library like Redux or MobX because I already use [Apollo](https://https://www.apollographql.com) complete with its own cache system.
+- I use [Material UI](https://material-ui.com/) instead of custom module CSS because I don't have time to build the feel and look of each individual component.
+- I didn't build this application with Docker or Kubernetes in mind or use microservices architecture because hosting a Kubernetes app will cost money.
+
+## If I have more time
+
+- Set up CI/CD integration
+- Write some integration and system testing
+- Add support for Docker and Kubernetes
+
+## Available Scripts
+
+### Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### Development
+
+First, you must create an `.env.local` file that house 7 environment variables `DATABASE_URL`, `SHADOW_DATABASE_URL`, `PUBLIC_KEY`, `PRIVATE_KEY`, `FRONTEND_SERVER_URL`, `BACKEND_DOMAIN` and `PORT`. 
+
+You can check out [this website](https://app.id123.io/free-tools/key-generator/) to generate a public and private key pair.
+
+It's something like this:
+
+```
+DATABASE_URL = 
+SHADOW_DATABASE_URL = 
+
+PUBLIC_KEY = 
+PRIVATE_KEY = 
+
+FRONTEND_SERVER_URL = http://localhost:3000
+BACKEND_DOMAIN = localhost
+
+PORT = 4000
+```
+
+Now, you can run the development server:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# development mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
-
+### Deployment
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run build
+# then
+npm run start
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
