@@ -8,7 +8,7 @@ import { signJwt } from 'src/utils/jwt.utils';
 const cookieOptions: CookieOptions = {
     domain: process.env.BACKEND_DOMAIN || 'localhost',
     secure: false,
-    sameSite: 'none',
+    sameSite: 'lax',
     httpOnly: true,
     path: '/'
 };
