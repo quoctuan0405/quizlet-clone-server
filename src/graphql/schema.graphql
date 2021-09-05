@@ -50,6 +50,7 @@ type User {
     username: String!
     sets: [Set]
     learningTerms: [UserLearningTerm]
+    accessToken: String
 }
 
 type UserLearningTerm {

@@ -1,13 +1,14 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-import { PrismaClient, User } from '@prisma/client';
+import { PrismaClient, User as PrismaUser } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { CookieOptions } from 'express';
 import { Ctx } from 'src/types/Context.type';
 import { signJwt } from 'src/utils/jwt.utils';
+import { User as GraphQLUser } from 'src/graphql';
 
 const cookieOptions: CookieOptions = {
     domain: process.env.BACKEND_DOMAIN || 'localhost',
-    secure: true,
+    secure: false,
     sameSite: 'none',
     httpOnly: true,
     path: '/'
@@ -23,33 +24,35 @@ export class UserService extends PrismaClient implements OnModuleInit, OnModuleD
         await this.$disconnect();
     }
 
-    async setLoginCookie(user: User, context: Ctx) {
+    setLoginCookie(user: PrismaUser, context: Ctx) {
         const jwt = signJwt({ id: user.id, username: user.username }, '1w');
 
         context.res.cookie('accessToken', jwt, cookieOptions);
+
+        return jwt;
     }
 
-    async createUser(username: string, password: string, context: Ctx): Promise<User> {
+    async createUser(username: string, password: string, context: Ctx): Promise<GraphQLUser> {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const user = await this.user.create({ data: { username, password: hashedPassword }});
 
-        this.setLoginCookie(user, context);
+        const accessToken = this.setLoginCookie(user, context);
 
-        return user;
+        return { ...user, id: user.id.toString(), accessToken };
     }
 
-    async login(username: string, candidatePassword: string, context: Ctx) {
+    async login(username: string, candidatePassword: string, context: Ctx): Promise<GraphQLUser> {
         const user = await this.user.findUnique({ where: { username } });
         
         if (!user || !await bcrypt.compare(candidatePassword, user.password)) {
             throw new Error("Invalid credentials.");
         }
 
-        this.setLoginCookie(user, context);
+        const accessToken = this.setLoginCookie(user, context);
 
-        return user;
+        return { ...user, id: user.id.toString(), accessToken };
     }
 
     async logout(context: Ctx) {

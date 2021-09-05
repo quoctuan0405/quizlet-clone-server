@@ -121,6 +121,7 @@ export class User {
     username: string;
     sets?: Set[];
     learningTerms?: UserLearningTerm[];
+    accessToken?: string;
 }
 
 export class UserLearningTerm {
