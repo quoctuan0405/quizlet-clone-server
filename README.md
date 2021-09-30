@@ -2,7 +2,7 @@
 
 ## Why I made this project
 
-Many use [Quizlet](https://quizlet.com) not just to memorize terms but also to learn by heart an entire question bank. This project add one feature that [Quizlet](https://quizlet.com) not currently have: the creator can add multiple options for each of their terms for learner to choose in learning mode.
+Many use [Quizlet](https://quizlet.com) not just to memorize terms but also to learn by heart an entire question bank (multiple choices question type). This project add one feature that [Quizlet](https://quizlet.com) not currently have: the creator can add multiple options for each of their terms for learner to choose in learning mode.
 
 ## How I worked on this project
 
