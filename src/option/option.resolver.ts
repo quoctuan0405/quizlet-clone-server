@@ -3,10 +3,12 @@ import { OptionService } from './option.service';
 
 @Resolver('Option')
 export class OptionResolver {
-    constructor(private optionService: OptionService) {}
+  constructor(private optionService: OptionService) {}
 
-    @Query('options')
-    async options(@Args('termId') termId: string) {
-        return this.optionService.option.findMany({ where: {termId: parseInt(termId)}});
-    }
+  @Query('options')
+  async options(@Args('termId') termId: string) {
+    return this.optionService.option.findMany({
+      where: { termId: parseInt(termId) },
+    });
+  }
 }

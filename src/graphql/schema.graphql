@@ -1,111 +1,111 @@
 type Query {
-    hi: String!
-    user(id: ID!): User
-    me: User
-    users: [User]!
-    sets: [Set]!
-    learningSets: [Set]
-    findSet(query: String): [Set]
-    set(id: ID!): Set
-    terms(setId: ID!): [Term]!
-    options(termId: ID!): [Option]!
+  hi: String!
+  user(id: ID!): User
+  me: User
+  users: [User]!
+  sets: [Set]!
+  learningSets: [Set]
+  findSet(query: String): [Set]
+  set(id: ID!): Set
+  terms(setId: ID!): [Term]!
+  options(termId: ID!): [Option]!
 }
 
 type Mutation {
-    signup(signupInput: SignupInput): User
-    login(loginInput: LoginInput): User
-    logout: Boolean
-    setUserLearningSet(setId: ID!): Boolean
-    setUserLearningTerms(terms: [TermReport]!): [Term]!
-    resetLearning(setId: ID!): Boolean
-    createSet(createSetInput: CreateSetInput): Set!
-    updateSet(updateSetInput: UpdateSetInput): Set!
+  signup(signupInput: SignupInput): User
+  login(loginInput: LoginInput): User
+  logout: Boolean
+  setUserLearningSet(setId: ID!): Boolean
+  setUserLearningTerms(terms: [TermReport]!): [Term]!
+  resetLearning(setId: ID!): Boolean
+  createSet(createSetInput: CreateSetInput): Set!
+  updateSet(updateSetInput: UpdateSetInput): Set!
 }
 
 type Set {
-    id: ID!
-    name: String!
-    author: User!
-    _count: _CountTerm!
-    terms: [Term]
+  id: ID!
+  name: String!
+  author: User!
+  _count: _CountTerm!
+  terms: [Term]
 }
 
 type Term {
-    id: ID!
-    question: String!
-    answer: String!
-    explanation: String
-    options: [Option]
-    remained: Int
-    learned: Boolean
+  id: ID!
+  question: String!
+  answer: String!
+  explanation: String
+  options: [Option]
+  remained: Int
+  learned: Boolean
 }
 
 type Option {
-    id: ID!
-    option: String!
+  id: ID!
+  option: String!
 }
 
 type User {
-    id: ID!
-    username: String!
-    sets: [Set]
-    learningTerms: [UserLearningTerm]
-    accessToken: String
+  id: ID!
+  username: String!
+  sets: [Set]
+  learningTerms: [UserLearningTerm]
+  accessToken: String
 }
 
 type UserLearningTerm {
-    id: ID!
-    user: User!
-    term: Term!
-    remained: Int!
+  id: ID!
+  user: User!
+  term: Term!
+  remained: Int!
 }
 
 type _CountTerm {
-    terms: Int!
+  terms: Int!
 }
 
 input SignupInput {
-    username: String!
-    password: String!
+  username: String!
+  password: String!
 }
 
 input LoginInput {
-    username: String!
-    password: String!
+  username: String!
+  password: String!
 }
 
 input TermReport {
-    termId: ID!
-    correct: Boolean!
+  termId: ID!
+  correct: Boolean!
 }
 
 input CreateSetInput {
-    name: String!
-    terms: [CreateTermInput!]!
+  name: String!
+  terms: [CreateTermInput!]!
 }
 
 input CreateTermInput {
-    question: String!
-    answer: String!
-    options: [UpsertOption]
-    explanation: String
+  question: String!
+  answer: String!
+  options: [UpsertOption]
+  explanation: String
 }
 
 input UpdateSetInput {
-    id: ID!
-    name: String!
-    terms: [UpdateTermInput!]!
+  id: ID!
+  name: String!
+  terms: [UpdateTermInput!]!
 }
 
 input UpdateTermInput {
-    id: ID
-    question: String!
-    answer: String!
-    options: [UpsertOption]
-    explanation: String
+  id: ID
+  question: String!
+  answer: String!
+  options: [UpsertOption]
+  explanation: String
 }
 
 input UpsertOption {
-    id: ID
-    option: String!
+  id: ID
+  option: String!
 }

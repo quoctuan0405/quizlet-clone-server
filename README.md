@@ -26,31 +26,53 @@ Many use [Quizlet](https://quizlet.com) not just to memorize terms but also to l
 
 ## Available Scripts
 
+I use Node v19.3.0 to run this project. Check out [this website](https://nodejs.org/en/download/) to install Node.
+
 ### Installation
 
 ```bash
 $ npm install
 ```
 
+### Database
+
+In case you don't have a database, I have a docker compose file that install a postgres database for you. Just run:
+
+```bash
+$ docker compose -f docker-compose.dev.yml up -d
+```
+
 ### Development
 
-First, you must create an `.env.local` file that house 7 environment variables `DATABASE_URL`, `SHADOW_DATABASE_URL`, `PUBLIC_KEY`, `PRIVATE_KEY`, `FRONTEND_SERVER_URL`, `BACKEND_DOMAIN` and `PORT`. 
+First, you must create an `.env.local` file that house 7 environment variables `DATABASE_URL`, `SHADOW_DATABASE_URL`, `PUBLIC_KEY`, `PRIVATE_KEY`, `FRONTEND_SERVER_URL`, `BACKEND_DOMAIN` and `PORT`.
 
-You can check out [this website](https://app.id123.io/free-tools/key-generator/) to generate a public and private key pair.
+You can check out [this website](https://app.id123.io/free-tools/key-generator/) to generate a public and private key pair. Remember to choose Private Key Bits to 2048.
 
 It's something like this:
 
 ```
-DATABASE_URL = 
-SHADOW_DATABASE_URL = 
+DATABASE_URL = postgres://postgres:root@localhost:5432/quizlet_clone
+SHADOW_DATABASE_URL = postgres://postgres:root@localhost:5432/quizlet_clone_shadow
 
-PUBLIC_KEY = 
-PRIVATE_KEY = 
+PUBLIC_KEY =
+PRIVATE_KEY =
 
 FRONTEND_SERVER_URL = http://localhost:3000
 BACKEND_DOMAIN = localhost
 
 PORT = 4000
+```
+
+Next step, we must migrate database:
+
+```bash
+$ npm run migrate
+```
+
+Next, let's generate typing for Typescript:
+
+```bash
+$ npm run generate-type
 ```
 
 Now, you can run the development server:
@@ -61,6 +83,7 @@ $ npm run start:dev
 ```
 
 ### Deployment
+
 ```bash
 npm run build
 # then

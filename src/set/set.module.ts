@@ -4,6 +4,6 @@ import { SetResolver } from './set.resolver';
 import { TermService } from 'src/term/term.service';
 
 @Module({
-  providers: [SetService, SetResolver, TermService]
+  providers: [SetService, SetResolver, TermService],
 })
 export class SetModule {}

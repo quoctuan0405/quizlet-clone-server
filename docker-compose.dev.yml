@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  database:
+    container_name: quizlet-clone-database
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-root}
+      PGDATA: /var/lib/postgresql/data/quizlet-clone-database
+    volumes:
+      - data:/var/lib/postgresql/data/quizlet-clone-database
+    logging:
+      options:
+        max-size: 10m
+        max-file: '3'
+    ports:
+      - '5432:5432'
+
+volumes:
+  data:

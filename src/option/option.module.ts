@@ -3,6 +3,6 @@ import { OptionService } from './option.service';
 import { OptionResolver } from './option.resolver';
 
 @Module({
-  providers: [OptionService, OptionResolver]
+  providers: [OptionService, OptionResolver],
 })
 export class OptionModule {}

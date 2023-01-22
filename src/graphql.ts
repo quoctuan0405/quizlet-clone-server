@@ -1,12 +1,13 @@
 
 /*
- * ------------------------------------------------------
+ * -------------------------------------------------------
  * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
  * -------------------------------------------------------
  */
 
 /* tslint:disable */
 /* eslint-disable */
+
 export class SignupInput {
     username: string;
     password: string;
@@ -30,8 +31,8 @@ export class CreateSetInput {
 export class CreateTermInput {
     question: string;
     answer: string;
-    options?: UpsertOption[];
-    explanation?: string;
+    options?: Nullable<Nullable<UpsertOption>[]>;
+    explanation?: Nullable<string>;
 }
 
 export class UpdateSetInput {
@@ -41,56 +42,56 @@ export class UpdateSetInput {
 }
 
 export class UpdateTermInput {
-    id?: string;
+    id?: Nullable<string>;
     question: string;
     answer: string;
-    options?: UpsertOption[];
-    explanation?: string;
+    options?: Nullable<Nullable<UpsertOption>[]>;
+    explanation?: Nullable<string>;
 }
 
 export class UpsertOption {
-    id?: string;
+    id?: Nullable<string>;
     option: string;
 }
 
 export abstract class IQuery {
     abstract hi(): string | Promise<string>;
 
-    abstract user(id: string): User | Promise<User>;
+    abstract user(id: string): Nullable<User> | Promise<Nullable<User>>;
 
-    abstract me(): User | Promise<User>;
+    abstract me(): Nullable<User> | Promise<Nullable<User>>;
 
-    abstract users(): User[] | Promise<User[]>;
+    abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
-    abstract sets(): Set[] | Promise<Set[]>;
+    abstract sets(): Nullable<Set>[] | Promise<Nullable<Set>[]>;
 
-    abstract learningSets(): Set[] | Promise<Set[]>;
+    abstract learningSets(): Nullable<Nullable<Set>[]> | Promise<Nullable<Nullable<Set>[]>>;
 
-    abstract findSet(query?: string): Set[] | Promise<Set[]>;
+    abstract findSet(query?: Nullable<string>): Nullable<Nullable<Set>[]> | Promise<Nullable<Nullable<Set>[]>>;
 
-    abstract set(id: string): Set | Promise<Set>;
+    abstract set(id: string): Nullable<Set> | Promise<Nullable<Set>>;
 
-    abstract terms(setId: string): Term[] | Promise<Term[]>;
+    abstract terms(setId: string): Nullable<Term>[] | Promise<Nullable<Term>[]>;
 
-    abstract options(termId: string): Option[] | Promise<Option[]>;
+    abstract options(termId: string): Nullable<Option>[] | Promise<Nullable<Option>[]>;
 }
 
 export abstract class IMutation {
-    abstract signup(signupInput?: SignupInput): User | Promise<User>;
+    abstract signup(signupInput?: Nullable<SignupInput>): Nullable<User> | Promise<Nullable<User>>;
 
-    abstract login(loginInput?: LoginInput): User | Promise<User>;
+    abstract login(loginInput?: Nullable<LoginInput>): Nullable<User> | Promise<Nullable<User>>;
 
-    abstract logout(): boolean | Promise<boolean>;
+    abstract logout(): Nullable<boolean> | Promise<Nullable<boolean>>;
 
-    abstract setUserLearningSet(setId: string): boolean | Promise<boolean>;
+    abstract setUserLearningSet(setId: string): Nullable<boolean> | Promise<Nullable<boolean>>;
 
-    abstract setUserLearningTerms(terms: TermReport[]): Term[] | Promise<Term[]>;
+    abstract setUserLearningTerms(terms: Nullable<TermReport>[]): Nullable<Term>[] | Promise<Nullable<Term>[]>;
 
-    abstract resetLearning(setId: string): boolean | Promise<boolean>;
+    abstract resetLearning(setId: string): Nullable<boolean> | Promise<Nullable<boolean>>;
 
-    abstract createSet(createSetInput?: CreateSetInput): Set | Promise<Set>;
+    abstract createSet(createSetInput?: Nullable<CreateSetInput>): Set | Promise<Set>;
 
-    abstract updateSet(updateSetInput?: UpdateSetInput): Set | Promise<Set>;
+    abstract updateSet(updateSetInput?: Nullable<UpdateSetInput>): Set | Promise<Set>;
 }
 
 export class Set {
@@ -98,17 +99,17 @@ export class Set {
     name: string;
     author: User;
     _count: _CountTerm;
-    terms?: Term[];
+    terms?: Nullable<Nullable<Term>[]>;
 }
 
 export class Term {
     id: string;
     question: string;
     answer: string;
-    explanation?: string;
-    options?: Option[];
-    remained?: number;
-    learned?: boolean;
+    explanation?: Nullable<string>;
+    options?: Nullable<Nullable<Option>[]>;
+    remained?: Nullable<number>;
+    learned?: Nullable<boolean>;
 }
 
 export class Option {
@@ -119,9 +120,9 @@ export class Option {
 export class User {
     id: string;
     username: string;
-    sets?: Set[];
-    learningTerms?: UserLearningTerm[];
-    accessToken?: string;
+    sets?: Nullable<Nullable<Set>[]>;
+    learningTerms?: Nullable<Nullable<UserLearningTerm>[]>;
+    accessToken?: Nullable<string>;
 }
 
 export class UserLearningTerm {
@@ -134,3 +135,5 @@ export class UserLearningTerm {
 export class _CountTerm {
     terms: number;
 }
+
+type Nullable<T> = T | null;
