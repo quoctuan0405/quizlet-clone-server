@@ -11,6 +11,7 @@ import { SetModule } from './set/set.module';
 import { TermModule } from './term/term.module';
 import { OptionModule } from './option/option.module';
 import { UserLearningTermModule } from './user-learning-term/user-learning-term.module';
+import { AppResolver } from './app.resolver';
 
 @Module({
   imports: [
@@ -47,6 +48,6 @@ import { UserLearningTermModule } from './user-learning-term/user-learning-term.
     UserLearningTermModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}
