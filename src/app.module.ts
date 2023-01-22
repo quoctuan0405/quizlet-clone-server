@@ -30,7 +30,15 @@ import { AppResolver } from './app.resolver';
         origin: process.env.FRONTEND_SERVER_URL as string,
       },
       context: ({ req, res }) => {
-        const { accessToken } = req.cookies;
+        let accessToken: string;
+
+        if (req.cookies?.accessToken) {
+          accessToken = req.cookies.accessToken;
+        } else if (req.headers.accessToken) {
+          accessToken = req.headers.accessToken;
+        } else if (req.headers.accesstoken) {
+          accessToken = req.headers.accesstoken;
+        }
 
         const decoded =
           accessToken && decode(accessToken.replace('Bearer ', ''));
