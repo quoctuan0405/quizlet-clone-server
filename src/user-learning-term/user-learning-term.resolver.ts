@@ -7,7 +7,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { UserLearningTerm } from '@prisma/client';
+import { PrismaClient, UserLearningTerm } from '@prisma/client';
 import { TermReport } from 'src/graphql';
 import { TermService } from 'src/term/term.service';
 import { Ctx } from 'src/types/Context.type';
@@ -102,15 +102,19 @@ export class UserLearningTermResolver {
       return false;
     }
 
-    await this.userLearningTermService.userLearningTerm.updateMany({
-      where: {
-        termId: { in: termsId.map(({ id }) => id) },
-        userId: context.req.user.id,
-      },
-      data: {
-        remained: 3,
-        learned: false,
-      },
+    await this.userLearningTermService.userLearningTerm.deleteMany({
+      where: { termId: { in: termsId.map(({ id }) => id) } },
+    });
+
+    const userLearningTerms = termsId.map(({ id }) => ({
+      termId: id,
+      userId: context.req.user.id,
+      remained: 3,
+      learned: false,
+    }));
+
+    await this.userLearningTermService.userLearningTerm.createMany({
+      data: userLearningTerms,
     });
 
     return true;
