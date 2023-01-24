@@ -34,6 +34,7 @@
     "cookie-parser": "^1.4.6",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "ts-morph": "^17.0.1"
@@ -47,6 +48,7 @@
     "@types/graphql": "^14.5.0",
     "@types/jest": "29.2.4",
     "@types/jsonwebtoken": "^9.0.1",
+    "@types/lodash": "^4.14.191",
     "@types/node": "18.11.18",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",

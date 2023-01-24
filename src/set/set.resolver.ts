@@ -12,7 +12,7 @@ import { Set, Term } from '@prisma/client';
 import { Ctx } from 'src/types/Context.type';
 import { TermService } from 'src/term/term.service';
 import { CreateSetInput, UpsertOption, UpdateSetInput } from 'src/graphql';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 @Resolver('Set')
 export class SetResolver {
